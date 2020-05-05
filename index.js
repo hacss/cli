@@ -56,12 +56,12 @@ const options = call(
 );
 
 const main = async () => {
-  const css = await build(options);
+  const { code } = await build(options);
   if (options.output) {
-    await writeFile(path.join(process.cwd(), options.output), css);
+    await writeFile(path.join(process.cwd(), options.output), code);
     console.log(`Successfully generated style sheet ${options.output}`);
   } else {
-    process.stdout.write(css);
+    process.stdout.write(code);
   }
 };
 

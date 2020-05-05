@@ -29,7 +29,7 @@
   },
   "homepage": "https://hacss.io",
   "dependencies": {
-    "@hacss/build": "^1.0.0"
+    "@hacss/build": "^1.0.1"
   },
   "prettier": "@hacss/prettier-config",
   "devDependencies": {
