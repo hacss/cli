@@ -24,6 +24,8 @@ const {
   takeWhile,
 } = require("ramda");
 
+const build = require("@hacss/build");
+
 if (process.argv.length < 3) {
   return console.log(
     "Usage: hacss [--config <config-file>] [--output <output-file>] <sources>",
