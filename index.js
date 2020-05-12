@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 
 const {
+  promises: { writeFile },
+} = require("fs");
+const path = require("path");
+
+const {
   adjust,
   apply,
   call,
@@ -57,12 +62,32 @@ const options = call(
   process.argv,
 );
 
+const mkWarning = ignored => {
+  const msg =
+    ignored.length === 1
+      ? "a potential rule due to an error"
+      : "some potential rules due to errors";
+  return `
+Hacss ignored ${msg}:
+${ignored.map(({ className, error }) => `${className} - ${error}`).join("\n")}
+`;
+};
+
 const main = async () => {
-  const { code } = await build(options);
+  const { css, ignored } = await build(options);
   if (options.output) {
-    await writeFile(path.join(process.cwd(), options.output), code);
+    await writeFile(path.join(process.cwd(), options.output), css);
+    if (ignored) {
+      console.warn(mkWarning(ignored));
+    }
     console.log(`Successfully generated style sheet ${options.output}`);
   } else {
+    const code = `${css}
+
+/*
+${mkWarning(ignored)}
+*/
+    `;
     process.stdout.write(code);
   }
 };
