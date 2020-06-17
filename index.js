@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-const {
-  promises: { writeFile },
-} = require("fs");
+const { promisify } = require("util");
+const writeFile = promisify(require("fs").writeFile);
 const path = require("path");
 
 const {
@@ -77,7 +76,7 @@ const main = async () => {
   const { css, ignored } = await build(options);
   if (options.output) {
     await writeFile(path.join(process.cwd(), options.output), css);
-    if (ignored) {
+    if (ignored.length) {
       console.warn(mkWarning(ignored));
     }
     console.log(`Successfully generated style sheet ${options.output}`);
