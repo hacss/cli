@@ -98,8 +98,7 @@ const main = async () => {
 ${mkWarning(ignored)}
 */`
         : ""
-    }
-    `;
+    }`;
     process.stdout.write(code);
   }
 };
