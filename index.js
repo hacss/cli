@@ -73,6 +73,15 @@ ${ignored.map(({ className, error }) => `${className} - ${error}`).join("\n")}
 };
 
 const main = async () => {
+  if ("version" in options) {
+    return console.log(
+      `v${
+        require(options.version
+          ? `@hacss/${options.version}/package.json`
+          : "./package.json").version
+      }`,
+    );
+  }
   const { css, ignored } = await build(options);
   if (options.output) {
     await writeFile(path.join(process.cwd(), options.output), css);
