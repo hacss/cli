@@ -81,11 +81,15 @@ const main = async () => {
     }
     console.log(`Successfully generated style sheet ${options.output}`);
   } else {
-    const code = `${css}
+    const code = `${css}${
+      ignored.length
+        ? `
 
 /*
 ${mkWarning(ignored)}
-*/
+*/`
+        : ""
+    }
     `;
     process.stdout.write(code);
   }
