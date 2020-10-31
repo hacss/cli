@@ -1,12 +1,13 @@
 {
   "name": "@hacss/cli",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Hacss Command-Line Interface",
   "main": "index.js",
   "bin": {
     "hacss": "index.js"
   },
   "scripts": {
+    "lint": "eslint --cache index.js && prettier --parser babel --check index.js",
     "test": "echo \"No tests available.\""
   },
   "repository": {
@@ -29,7 +30,7 @@
   },
   "homepage": "https://hacss.io",
   "dependencies": {
-    "@hacss/build": "^2.1.2",
+    "@hacss/build": "^3.0.2",
     "ramda": "^0.27.0"
   },
   "prettier": "@hacss/prettier-config",
