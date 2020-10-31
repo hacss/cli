@@ -61,24 +61,28 @@ const options = call(
   process.argv,
 );
 
-const main = async () => {
+const main = () => {
   if ("version" in options) {
-    return console.log(
+    console.log(
       `v${
         require(options.version
           ? `@hacss/${options.version}/package.json`
           : "./package.json").version
       }`,
     );
-  }
-  const css = build(options);
-  if (options.output) {
-    return writeFile(path.join(process.cwd(), options.output), css).then(() =>
-      console.log(`Successfully generated style sheet ${options.output}`),
-    );
+    return Promise.resolve();
   }
 
-  process.stdout.write(css);
+  return build(options).then(({ code: css }) => {
+    if (options.output) {
+      return writeFile(path.join(process.cwd(), options.output), css).then(() =>
+        console.log(`Successfully generated style sheet ${options.output}`),
+      );
+    }
+
+    process.stdout.write(css);
+    return Promise.resolve();
+  });
 };
 
 main().catch(err => console.error(err));
