@@ -1,6 +1,6 @@
 {
   "name": "@hacss/cli",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Hacss Command-Line Interface",
   "main": "index.js",
   "bin": {
