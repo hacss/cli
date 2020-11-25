@@ -1,6 +1,6 @@
 {
   "name": "@hacss/cli",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Hacss Command-Line Interface",
   "main": "index.js",
   "bin": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://hacss.io",
   "dependencies": {
-    "@hacss/build": "^3.0.2",
+    "@hacss/build": "^4.0.0",
     "ramda": "^0.27.0"
   },
   "prettier": "@hacss/prettier-config",
